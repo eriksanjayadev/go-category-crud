@@ -1,0 +1,83 @@
+## 🏗️ Build Binary
+
+Go bisa di-compile jadi **single binary** - gak perlu runtime!
+
+### Build Standar
+
+```bash
+go build -o go-category-crud
+```
+
+* Output: `go-category-crud` (Mac/Linux) atau `go-category-crud.exe` (Windows)
+* Size: \~10-15MB
+* No dependencies!
+
+### Build Production (Smaller)
+
+```bash
+go build -ldflags="-s -w" -o go-category-crud
+```
+
+* `-s` - Strip symbol table
+* `-w` - Strip debug info
+* Size: \~7-10MB (lebih kecil!)
+
+### Cross-Compilation
+
+**Build untuk Windows (dari Mac/Linux):**
+
+```bash
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o go-category-crud.exe
+```
+
+**Build untuk Linux (dari Windows/Mac):**
+
+```bash
+GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o go-category-crud
+```
+
+**Build untuk Mac (dari Windows/Linux):**
+
+```bash
+GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o go-category-crud
+```
+
+Keren kan? 1 command, bisa build untuk semua OS!
+
+### Jalankan Binary
+
+```bash
+# Mac/Linux
+./go-category-crud
+
+# Windows
+go-category-crud.exe
+```
+
+Server langsung jalan - gak perlu `go run` lagi!
+
+
+---
+
+## ☁️ Deploy ke Railway (Gratis!)
+
+### Persiapan
+
+**1. Bikin** `**.gitignore**`**:**
+
+```
+go-category-crud
+go-category-crud.exe
+*.log
+```
+
+**2. Push ke GitHub:**
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/go-category-crud.git
+git push -u origin main
+```
